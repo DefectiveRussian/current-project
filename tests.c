@@ -5,7 +5,7 @@
 
 static	char	*reader(int	fd, char *buffer, char *quicksave)
 {
-	int	read_result;
+	int		read_result;
 	char	*temp;
 
 	read_result = 1;
@@ -20,8 +20,13 @@ static	char	*reader(int	fd, char *buffer, char *quicksave)
 		if (!quicksave)
 			quicksave = ft_strdup("");
 		temp = quicksave;
-		quicksave = ft_strjoin
+		quicksave = ft_strjoin(temp, buffer);
+		free(temp);
+		temp = NULL;
+		if (ft_strchr(buffer, '\n'))
+			break;
 	}
+	return (quicksave);
 }
 
 char	*get_next_line(int fd)

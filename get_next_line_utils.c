@@ -6,7 +6,7 @@
 /*   By: dekhamid <dekhamid@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:56:01 by dekhamid          #+#    #+#             */
-/*   Updated: 2024/11/28 22:16:54 by dekhamid         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:36:23 by dekhamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,21 +85,18 @@ char	*ft_strdup(const char *s)
 	return (d);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
-	const char	*bols;
-
-	bols = 0;
 	while (*s)
 	{
 		if (*s == (char)c)
-			bols = s;
+			return ((char *)s);
 		s++;
 	}
 	if (*s == (char)c)
 		return ((char *)s);
 	else
-		return ((char *)bols);
+		return (0);
 }
 
 static	size_t	ft_vibecheck(char const *s, unsigned int start, size_t len)
