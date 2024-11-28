@@ -20,8 +20,7 @@ static	char	*reader(int	fd, char *buffer, char *quicksave)
 		if (!quicksave)
 			quicksave = ft_strdup("");
 		temp = quicksave;
-		ft_str
-		
+		quicksave = ft_strjoin
 	}
 }
 
