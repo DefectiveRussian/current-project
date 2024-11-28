@@ -6,11 +6,21 @@
 static	char	*reader(int	fd, char *buffer, char *quicksave)
 {
 	int	read_result;
+	char	*temp;
 
 	read_result = 1;
 	while (read_result != '\0')
 	{	
 		read_result = read(fd, buffer, BUFFER_SIZE);
+		if (read_result == -1)
+			return (0);
+		else if (read_result == 0)
+			break;
+		buffer[read_result] = '\0';
+		if (!quicksave)
+			quicksave = ft_strdup("");
+		temp = quicksave;
+		ft_str
 		
 	}
 }
@@ -18,7 +28,7 @@ static	char	*reader(int	fd, char *buffer, char *quicksave)
 char	*get_next_line(int fd)
 {
 	char			*buffer;
-	char			*test;
+	char			*out;
 	static	char	*quicksave;
 	
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -26,9 +36,10 @@ char	*get_next_line(int fd)
 	char* c = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (0);
-	test = reader(fd, buffer, quicksave);
-	
+	out = reader(fd, buffer, quicksave);
 	free(buffer);
+	if (!out)
+		return (0);
 	
 	return (0);
 }

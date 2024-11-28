@@ -6,7 +6,7 @@
 /*   By: dekhamid <dekhamid@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:56:01 by dekhamid          #+#    #+#             */
-/*   Updated: 2024/11/27 20:33:03 by dekhamid         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:16:54 by dekhamid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,46 @@ size_t	ft_strlen(const char *s)
 		c++;
 	}
 	return (c);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	one;
+	size_t	two;
+
+	one = 0;
+	two = 0;
+	while (dst[one] && one < size)
+		one++;
+	while (src[two] && (one + two + 1) < size)
+	{
+		dst[one + two] = src[two];
+		two++;
+	}
+	if (one < size)
+		dst[one + two] = 0;
+	return (one + ft_strlen((char *)src));
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	one;
+	size_t	two;
+
+	one = 0;
+	two = 0;
+	while (src[one])
+		one++;
+	if (size != 0)
+	{
+		while (src[two] != 0 && two < (size - 1))
+		{
+			dst[two] = src[two];
+			two++;
+		}
+		dst[two] = 0;
+	}
+	return (one);
 }
 
 char	*ft_strdup(const char *s)
@@ -96,4 +136,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	ptr[two] = 0;
 	return (ptr);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		one;
+	int		two;
+	char	*dest;
+
+	one = ft_strlen(s1);
+	two = ft_strlen(s2);
+	dest = malloc(sizeof(char) * (one + two + 1));
+	if (dest == 0)
+		return (0);
+	ft_strlcpy(dest, s1, one + 1);
+	ft_strlcat(dest, s2, one + two + 1);
+	return (dest);
 }
